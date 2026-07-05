@@ -1,6 +1,5 @@
 import regex
 from lxml import etree
-from pprint import pprint
 
 def read_htmltable(s: str) -> list:
     table = etree.HTML(s).find("body/table")
@@ -25,4 +24,5 @@ def read_html(file: str) -> dict:
     return out
 
 if __name__ == "__main__":
+    from pprint import pprint
     pprint(read_html("test/getdata.html"))
