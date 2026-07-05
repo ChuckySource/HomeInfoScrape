@@ -1,10 +1,15 @@
 import requests
 from proxy import get_proxy
+from dotenv import load_dotenv
+import os
 
-UNAME = 'YOUR_USERNAME_REMOVED'
-PASSWORD = 'YOUR_PASSWORD_REMOVED'
 
 URL = "https://homeinfopoint.de/ghg-wismar"
+
+load_dotenv()
+UNAME = os.getenv("UNAME")
+PASSWORD = os.getenv("PASSWORD")
+
 
 class Session:
     def __init__(self) -> None:
@@ -53,10 +58,10 @@ class Session:
             headers=self.general_headers
         )
         content: bytes = response.content
-        print(response.headers["Content-Encoding"])
-        print(response.headers["Content-Type"])
         with open("test/getdata.html", "bw") as f:
             f.write(content)
+
+
 if __name__ == "__main__":
     session = Session()
     session.get_content()
